@@ -4,7 +4,7 @@
  * But this has to come from .env
  */
 export function baseUrl() {
-    return 'https://api.pinchappmail.com/';
+    return 'https://api.pinchappmail.com';
 }
 
 export function makeUrl(url, params) {

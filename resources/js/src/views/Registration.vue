@@ -58,13 +58,13 @@
                       placeholder="Enter passsword"
                       ></b-form-input>
                   </b-form-group>
-                  <b-form-group id="input-group-2" label-for="input-2">
+                  <b-form-group id="input-group-2" label-for="input-2" description="For this demo keep url like http://localhost:8000/registration-verification">
                       <b-form-input
                       id="input-2"
                       v-model="form.returnUrl"
                       type="text"
                       required
-                      placeholder="Enter return url"
+                      placeholder="Enter return url e.g http://your domain/registration-verification?t=token"
                       ></b-form-input>
                   </b-form-group>
 
@@ -91,12 +91,12 @@
     data() {
       return {
         form: {
-          firstName: 'Amit',
-          lastName: 'Singh',
-          email: 'bpsrockers009@gmail.com',
-          company: 'Google',
-          password: '123456789',
-          returnUrl: 'http://localhost:8000/registration-verification?t={{token}}'
+          firstName: '',
+          lastName: '',
+          email: '',
+          company: '',
+          password: '',
+          returnUrl: ''
         },
       }
     },

@@ -14,7 +14,7 @@ export function get(uri, params) {
 
 export async function post(uri, requestParams) {
     let url = makeUrl(uri)
-    return axios.post(url, requestParams, { headers: { 'content-type': 'application/json', 'Access-Control-Allow-Origin': '*' }});
+    return axios.post(url, requestParams, { headers: { 'content-type': 'application/json' }});
 }
 
 export async function patch(uri, requestParams) {

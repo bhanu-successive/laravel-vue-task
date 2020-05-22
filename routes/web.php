@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +15,38 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
+Route::any('/', function (Request $request) {
+
+    // Registration verification
+    if ($request->query('t', null)) {
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json'
+        ])->patch(env('APP_BASE_URL').'/v1/public/account', [
+            'verify_code' => $request->query('t')
+        ]);
+        if ($response->successful() ) {
+            return redirect('/?redirect=registration-verification&status=SUCCESS');
+        } else {
+            return redirect('/?redirect=registration-verification&status=ERROR');
+        }
+    }
+    /**
+     * Forgot  password
+     */
+    if ($request->query('reset_pwd', null)) {
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json'
+        ])->patch(env('APP_BASE_URL').'v1/public/forgot_password', [
+            'verify_code' => $request->query('reset_pwd')
+        ]);
+
+        if ($response->successful() ) {
+            return redirect('/?redirect=reset-password&status=SUCCESS');
+        } else {
+            return redirect('/?redirect=reset-password&status=ERROR');
+        }
+    }
+
     return view('welcome');
 });
 
@@ -21,7 +54,13 @@ Auth::routes();
 
 Route::get('/registration-verification', function(Request $request)
 {
-     return redirect('/?verify_token='. $request->query('t'));
+    /**
+     * Making patch from server itself in order to avoid the CORS issue from frontend
+     *
+     */
+    return redirect('/?redirect=registration-verification&status=true');
+
+
 });
 
 

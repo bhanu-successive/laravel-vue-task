@@ -3,7 +3,9 @@
         <b-row class="justify-content-md-center" align-v="center">
         <b-col cols="6">
             <b-jumbotron>
-                <p>Verifying. Please wait....!!</p>
+                <p v-if="status.toUpperCase() === 'SUCCESS'">Email verified successfully!!</p>
+                <p v-if="status.toUpperCase() === 'ERROR'">We encountered some error while processing your request.</p>
+                <router-link to="/">Back to home</router-link>
             </b-jumbotron>
         </b-col>
     </b-row>
@@ -13,13 +15,15 @@
 <script>
   import { mapActions } from 'vuex'
   export default {
+    data() {
+      return {
+        status: ''
+      }
+    },
     mounted: function() {
       this.$nextTick(()=>{
-        this.registrationVerification(this.$route.query.t)
+        this.status = this.$route.query.status
       })
     },
-    methods: {
-      ...mapActions(['registrationVerification']),
-    }
   }
 </script>
