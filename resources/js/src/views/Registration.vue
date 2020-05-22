@@ -20,10 +20,10 @@
                       ></b-form-input>
                   </b-form-group>
 
-                  <b-form-group id="input-group-2" label-for="input-2">
+                  <b-form-group id="input-group-2" label-for="input-2" required>
                       <b-form-input
                       id="input-2"
-                      v-model="form.LastName"
+                      v-model="form.lastName"
                       type="text"
                       required
                       placeholder="Enter last name"
@@ -84,7 +84,6 @@
 </template>
 
 <script>
-  import * as rules from 'vee-validate/dist/rules';
   import { mapActions } from 'vuex';
 
   export default {

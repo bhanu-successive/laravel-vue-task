@@ -81,7 +81,6 @@ router.beforeEach((to, from, next) => {
             next()
         }
         else {
-            console.log('sdfsdfsf');
             next({ path: '/home' })
         }
     } else {
@@ -90,9 +89,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.beforeEach((to, from, next) => {
-    console.log(to)
     if(to.path == '/') {
-        console.log(to);
         const { redirect = null, status } = to.query;
         if (redirect) {
             next({
